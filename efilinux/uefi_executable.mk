@@ -51,7 +51,7 @@ $(LOCAL_BUILT_MODULE): EFI_SIGNED_OUT := $(PRODUCT_OUT)/$(PRIVATE_MODULE).efi
 
 $(LOCAL_BUILT_MODULE): $(GNUEFI_PATH)/libgnuefi.a $(LDS) $(all_objects) | $(HOST_OUT_EXECUTABLES)/prebuilt-bin-to-hex $(EFI_SIGNING_TOOL)
 	@mkdir -p $(dir $@)
-	prebuilt-bin-to-hex splash_bmp < $(SPLASH_BMP) | $(TARGET_CC) -x c - -c $(TARGET_GLOBAL_CFLAGS) $(LOCAL_TARGET_ARCH) -o $(SPLASH_OBJ)
+	prebuilt-bin-to-hex splash_bmp < $(SPLASH_BMP) | $(CC) -x c - -c $(LOCAL_CFLAGS) $(LOCAL_TARGET_ARCH) -o $(SPLASH_OBJ)
 	@echo "linking $@"
 	$(TARGET_TOOLS_PREFIX)ld$(HOST_EXECUTABLE_SUFFIX).bfd \
 		-Bsymbolic \

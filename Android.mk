@@ -16,6 +16,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
+.PHONY: uefi_osloader
+
 uefi_osloader: efilinux-$(TARGET_BUILD_VARIANT) warmdump
 
 include $(call all-subdir-makefiles)
